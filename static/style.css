@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 40px;
+}
+
+textarea {
+    width: 70%;
+    height: 150px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.note {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+    font-style: italic;
+}
+.result {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.fake {
+    color: #c0392b;
+}
+
+.real {
+    color: #27ae60;
+}
+
+.uncertain {
+    color: #f39c12;
+}
+
+.confidence-bar {
+    width: 60%;
+    height: 10px;
+    background: #e0e0e0;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: #3498db;
+    border-radius: 5px;
+}
