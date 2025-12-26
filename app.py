@@ -22,28 +22,28 @@ def clean_text(text):
     return text.lower()
 
 @app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
     result = None
     confidence = None
 
     if request.method == "POST":
-        news = request.form["news"]
-        cleaned = clean_text(news)
-        vec = vectorizer.transform([cleaned])
-        prediction = model.predict(vec)[0]
-        prob = model.predict_proba(vec)[0].max()
+        text = request.form.get("news")
 
-        confidence = round(prob * 100, 2)
+        if text:
+            vec = vectorizer.transform([text])
+            prediction = model.predict(vec)[0]
+            prob = model.predict_proba(vec)[0].max()
 
-        if prob < 0.9:
+            if prob < 0.80:
+                result = "Uncertain ⚠️"
+            else:
+                result = "Fake News ❌" if prediction == 1 else "Real News ✅"
 
-            result = "Uncertain ⚠️"
-        elif prediction == 1:
-            result = "Fake News ❌"
-        else:
-            result = "Real News ✅"
+            confidence = round(prob * 100, 2)
 
     return render_template("index.html", result=result, confidence=confidence)
+
 
 if __name__ == "__main__":
     app.run
